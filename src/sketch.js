@@ -6,7 +6,8 @@ function setup() {
 
 function draw() {
   background('powderblue');
-  drawbackground()
+  drawbackground();
+  drawSandbox();
 }
 
 function drawbackground() {
@@ -33,4 +34,22 @@ function fencepole(x,y,s) {
   rect(0,0,6,32);
   triangle(0,0,6,0,3,-3);
   pop();
+}
+
+function drawSandbox() {
+  push();
+  fill('#E3E84D')
+  quad(187,200,182,270,360,270,300,200)
+  fill('#8E5C04')
+  rect(185,200,115, 5)
+  quad(185,200,180,270,182,270,187,200)
+  quad(300, 200, 300, 205, 360, 280, 360, 270)
+  rect(180,270, 180, 10)
+  noFill();
+  arc(280, 225, 20, 13, PI, 0)
+  //ball
+  fill("blue")
+  ellipse(215,205,20,20)
+  pop();
+
 }
