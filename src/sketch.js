@@ -8,6 +8,7 @@ function draw() {
   background('powderblue');
   drawbackground();
   drawSandbox();
+  drawLawnmower(200,150,0.7);
 }
 
 function drawbackground() {
@@ -52,4 +53,26 @@ function drawSandbox() {
   ellipse(215,205,20,20)
   pop();
 
+}
+
+function drawLawnmower(x,y,s) {
+  push();
+  translate(x,y);
+  scale(s);
+  fill(130);
+  rect(-10,-33, 30, 30);
+  rect(-12,-33, 35,10);
+  quad(-70, -70, -25, -18, -22, -20, -70, -73);
+  fill("red");
+  quad(-30,-25,-30,0,50,0,50,-10); 
+  fill(130);
+  quad(-73, -62, -20, -10, -20, -13, -73, -66);
+  fill(0);
+  quad(-73, -62, -70, -62, -70,-73, -72,-73);
+  ellipse(-20,-5,15,15);
+  ellipse(40, -5, 15, 15);
+  fill(150);
+  ellipse(-20,-5, 5, 5);
+  ellipse(40, -5, 5, 5);
+  pop();
 }
