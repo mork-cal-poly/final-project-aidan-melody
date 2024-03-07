@@ -6,12 +6,15 @@ function setup() {
 let clicked = false;
 let xlawn = 200;
 let wpath = 0;
+let wr = 230;
+let wg = 170;
+let wb = 140;
 function draw() {
   background('powderblue');
   drawbackground();
   drawSandbox();
+  drawBBQ(60,300,0.8);
   if (clicked) {
-    updateLawnmower;
     wpath += 0.5;
     xlawn += 0.5;
   }
@@ -93,11 +96,112 @@ function drawLawnmower(x,y,s) {
   fill("darkgreen")
   pop();
 }
+function drawBBQ(x, y, s) {
+  push();
+  translate(x,y);
+  scale(s);
+  //leg in back
+  push();
+  stroke(140);
+  strokeWeight(6);
+  line(-3,-90, -7, -30)
+  stroke(255,255,255,100);
+  strokeWeight(3);
+  line(-3,-90,-7,-30)
+  noStroke();
+  fill(0);
+  rect(-11, -30, 8, 6)
+  pop();
+  
+  //fire
+  fill("red")
+  arc(0,-125, 80, 80, 0, PI)
+  fill(0);
+  ellipse(0,-125, 79, 30)
+  noStroke();
+  fill(255,165,0,160)
+  ellipse(0,-120,60,25)
+  fill(255,165,0,160)
+  ellipse(0,-117,45,12)
+  fill(255,165,0,255)
+  ellipse(0,-115,20,12)
+  noFill();
+  
+  
+  //metal shell
+  stroke("red")
+  strokeWeight(2)
+  arc(0,-125, 79, 30, PI, 3*PI)
+  //grill
+  stroke(120)
+  line(-30, -134, -32, -117)
+  line(-25, -136, -27, -115)
+  line(-20, -137, -22, -114)
+  line(-15, -138, -17, -113)
+  line(-10, -139, -12, -112)
+  line(-5, -139, -7, -112)
+  line(-0, -139, -2, -112)
+  line(5, -139, 3, -112)
+  line(10, -139, 8, -112)
+  line(15, -138, 13, -113)
+  line(20, -137, 18, -114)
+  line(25, -136, 24, -115)
+  line(30, -134, 29, -117)
+  //reflection
+  push();
+  noStroke();
 
-function updateLawnmower(x,y,s) {
-  lawnx += 0.5
-  drawLawnmower(lawnx,y,s)
+  fill(255,255,255,160)
+  rotate(-PI/4)
+  ellipse(90,-55, 20, 6)
+  pop();
+  //leg in front
+  noFill();
+  strokeWeight(4);
+  stroke("red");
+  ellipse(0,-50, 30,8)
+  stroke(140);
+  strokeWeight(6);
+  line(-10,-90, -20, -10)
+  line(13,-90, 23, -14)
+  stroke(255,255,255,100);
+  strokeWeight(3);
+  //line(-14,-60,-17,-37)
+  line(-10,-90,-20,-10)
+  line(13,-90,23,-14)
+  noStroke();
+  fill(0);
+  rect(-24, -10, 8, 6)
+  rect(19, -17, 8, 6)
+
+  pop();
+  
 }
+function drawWeiner(x,y,s,r,g,b) {
+  push();
+  translate(x,y);
+  rotate(PI/4);
+  scale(s);
+  noStroke();
+  fill(r,g,b);
+  circle(-9,-2,7,7);
+  circle(-7,-1,7,7);
+  circle(-5,0,7,7);
+  circle(-4,0,7,7);
+  circle(-3,0,7,7);
+  circle(-2,0,7,7);
+  circle(-1,0,7,7);
+  circle(0,0,7,7);
+  circle(1,0,7,7);
+  circle(2,0,7,7);
+  circle(3,0,7,7);
+  circle(4,0,7,7);
+  circle(5,0,7,7);
+  circle(7,-1,7,7);
+  circle(9,-2,7,7);
+  pop();
+}
+
 function lawnpath(x) {
   push();
   fill('darkgreen')
