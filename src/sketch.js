@@ -54,7 +54,7 @@ function draw() {
     }
   }
   if (clicked1 > 2 && clicked1 < 7) {
-    drawWeiner(65,200,0.7,wr2,wg2,wb2);
+    drawWeiner(65,200,0.7,wr3,wg3,wb3);
     wr3 -= .1
     wg3 -= .1
     wb3 -= .1
@@ -65,7 +65,7 @@ function draw() {
     }
   }
   if (clicked1 > 3 && clicked1 < 8) {
-    drawWeiner(75,200,0.7,wr2,wg2,wb2);
+    drawWeiner(75,200,0.7,wr4,wg4,wb4);
     wr4 -= .1
     wg4 -= .1
     wb4 -= .1
