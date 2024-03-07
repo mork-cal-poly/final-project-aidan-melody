@@ -3,13 +3,23 @@ function setup() {
   let myCanvas = createCanvas(400, 400);
   myCanvas.parent("canvas-parent");
 }
-
+let clicked = false;
+let xlawn = 200;
+let wpath = 0;
 function draw() {
   background('powderblue');
   drawbackground();
   drawSandbox();
-  drawLawnmower(200,150,0.7);
-}
+  if (clicked) {
+    updateLawnmower;
+    wpath += 0.5;
+    xlawn += 0.5;
+  }
+  lawnpath(wpath);
+  drawLawnmower(xlawn,150,0.7);
+  
+  }
+
 
 function drawbackground() {
   fill('#2B861D');
@@ -75,4 +85,24 @@ function drawLawnmower(x,y,s) {
   ellipse(-20,-5, 5, 5);
   ellipse(40, -5, 5, 5);
   pop();
+}
+
+function updateLawnmower(x,y,s) {
+  lawnx += 0.5
+  drawLawnmower(lawnx,y,s)
+}
+function lawnpath(x) {
+  push();
+  fill('darkgreen')
+  rect(200, 140,x,10)
+  pop();
+}
+function mouseClicked() {
+  if (mouseX > 180 &&
+    mouseX < 250 &&
+    mouseY > 130 &&
+    mouseY < 150
+    ) {
+      clicked = !clicked;
+    }
 }
