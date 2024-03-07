@@ -445,10 +445,10 @@ function mouseClicked() {
     ) {
       clicked1 += 1;
     }
-  if (mouseX > 235 &&
-    mouseX < 275 &&
-    mouseY > 220 &&
-    mouseY < 235
+  if (mouseX > 190 &&
+    mouseX < 320 &&
+    mouseY > 200 &&
+    mouseY < 275
     ) {
       clicked2 += 1;
     }
