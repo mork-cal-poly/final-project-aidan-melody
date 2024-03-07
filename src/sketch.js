@@ -31,7 +31,7 @@ function draw() {
     wpath += 0.5;
     xlawn += 0.5;
   }
-  if (clicked1 > 0) {
+  if (clicked1 > 0 && clicked1 < 5) {
     drawWeiner(45,200,0.7,wr,wg,wb);
     wr -= .1
     wg -= .1
@@ -42,7 +42,7 @@ function draw() {
     wb = 0
     }
   }
-  if (clicked1 > 1) {
+  if (clicked1 > 1 && clicked1 < 6) {
     drawWeiner(55,200,0.7,wr2,wg2,wb2);
     wr2 -= .1
     wg2 -= .1
@@ -53,7 +53,7 @@ function draw() {
     wb2 = 0
     }
   }
-  if (clicked1 > 2) {
+  if (clicked1 > 2 && clicked1 < 7) {
     drawWeiner(65,200,0.7,wr2,wg2,wb2);
     wr3 -= .1
     wg3 -= .1
@@ -64,7 +64,7 @@ function draw() {
     wb3 = 0
     }
   }
-  if (clicked1 > 3) {
+  if (clicked1 > 3 && clicked1 < 8) {
     drawWeiner(75,200,0.7,wr2,wg2,wb2);
     wr4 -= .1
     wg4 -= .1
@@ -74,6 +74,24 @@ function draw() {
     wg4 = 0
     wb4 = 0
     }
+  }
+  if (clicked1 == 9) {
+    clicked1 = 1
+    wr = 230;
+    wg = 170;
+    wb = 140;
+//weiner2
+    wr2 = 230;
+    wg2 = 170;
+    wb2 = 140;
+//weiner3
+    wr3 = 230;
+    wg3 = 170;
+    wb3 = 140;
+//weiner4
+    wr4 = 230;
+    wg4 = 170;
+    wb4 = 140;
   }
   lawnpath(wpath);
   drawLawnmower(xlawn,150,0.7);
