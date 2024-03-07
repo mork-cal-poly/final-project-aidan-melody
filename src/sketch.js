@@ -4,11 +4,24 @@ function setup() {
   myCanvas.parent("canvas-parent");
 }
 let clicked = false;
+let clicked1 = 0;
 let xlawn = 200;
 let wpath = 0;
 let wr = 230;
 let wg = 170;
 let wb = 140;
+//weiner2
+let wr2 = 230;
+let wg2 = 170;
+let wb2 = 140;
+//weiner3
+let wr3 = 230;
+let wg3 = 170;
+let wb3 = 140;
+//weiner4
+let wr4 = 230;
+let wg4 = 170;
+let wb4 = 140;
 function draw() {
   background('powderblue');
   drawbackground();
@@ -18,10 +31,54 @@ function draw() {
     wpath += 0.5;
     xlawn += 0.5;
   }
+  if (clicked1 > 0) {
+    drawWeiner(45,200,0.7,wr,wg,wb);
+    wr -= .1
+    wg -= .1
+    wb -= .1
+    if (wr < 0) {
+    wr = 0
+    wg = 0
+    wb = 0
+    }
+  }
+  if (clicked1 > 1) {
+    drawWeiner(55,200,0.7,wr2,wg2,wb2);
+    wr2 -= .1
+    wg2 -= .1
+    wb2 -= .1
+    if (wr2 < 0) {
+    wr2 = 0
+    wg2 = 0
+    wb2 = 0
+    }
+  }
+  if (clicked1 > 2) {
+    drawWeiner(65,200,0.7,wr2,wg2,wb2);
+    wr3 -= .1
+    wg3 -= .1
+    wb3 -= .1
+    if (wr3 < 0) {
+    wr3 = 0
+    wg3 = 0
+    wb3 = 0
+    }
+  }
+  if (clicked1 > 3) {
+    drawWeiner(75,200,0.7,wr2,wg2,wb2);
+    wr4 -= .1
+    wg4 -= .1
+    wb4 -= .1
+    if (wr4 < 0) {
+    wr4 = 0
+    wg4 = 0
+    wb4 = 0
+    }
+  }
   lawnpath(wpath);
   drawLawnmower(xlawn,150,0.7);
+}
   
-  }
 
 
 function drawbackground() {
@@ -216,4 +273,12 @@ function mouseClicked() {
     ) {
       clicked = !clicked;
     }
+    if (mouseX > 30 &&
+      mouseX < 90 &&
+      mouseY > 185 &&
+      mouseY < 215
+      ) {
+        clicked1 += 1;
+      }
 }
+//rect(30,185, 60, 30)
