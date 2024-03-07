@@ -5,6 +5,7 @@ function setup() {
 }
 let clicked = false;
 let clicked1 = 0;
+let clicked2 = 0;
 let xlawn = 200;
 let wpath = 0;
 let wr = 230;
@@ -93,10 +94,26 @@ function draw() {
     wg4 = 170;
     wb4 = 140;
   }
-  lawnpath(wpath);
-  drawLawnmower(xlawn,150,0.7);
+  if (clicked2 == 1) {
+    drawCastle(265,240,0.7);
+  }
+  if (clicked2 == 2) {
+    updatedCastle(265,240,0.7);
+  }
+  if (clicked2 == 0 || clicked2 > 2) {
+    push();
+    noFill();
+    stroke("#C7A77E")
+    arc(255, 225, 20, 13, PI, 0)
+    arc(245, 233, 20, 13, PI, 0)
+    arc(265, 233, 20, 13, PI, 0)
+    pop();
+    clicked2 = 0
+  }
+
+lawnpath(wpath);
+drawLawnmower(xlawn,150,0.7);
 }
-  
 
 
 function drawbackground() {
@@ -127,18 +144,29 @@ function fencepole(x,y,s) {
 
 function drawSandbox() {
   push();
-  fill('#E3E84D')
+  fill("#DCCE8C")
   quad(187,200,182,270,360,270,300,200)
   fill('#8E5C04')
   rect(185,200,115, 5)
   quad(185,200,180,270,182,270,187,200)
   quad(300, 200, 300, 205, 360, 280, 360, 270)
   rect(180,270, 180, 10)
+  push();
+  noStroke();
+  rotate(PI/12)
+  fill("red")
+  rect(360,160,7,10)
+  strokeWeight(1)
+  stroke("red")
+  line(363.5,160,363.5,155)
   noFill();
-  arc(280, 225, 20, 13, PI, 0)
-  //ball
-  fill("blue")
-  ellipse(215,205,20,20)
+  arc(363.5,152,5,5,0,PI)
+  line(361,152, 365, 152)
+  pop();
+  noStroke();
+  fill("#DCCE8C");
+  rect(300, 257, 14, 10)
+  pop();
   pop();
 
 }
@@ -276,6 +304,125 @@ function drawWeiner(x,y,s,r,g,b) {
   circle(9,-2,7,7);
   pop();
 }
+function drawCastle(x,y,s) {
+  push();
+  translate(x,y);
+  scale(s)
+  fill(255);
+  //main
+  fill("#D6B994")
+  rect(-40,-30,40,30)
+  //towers
+  fill("#DCCE8C")
+  rect(-50,-40, 13, 40)
+  rect(-0,-40, 13, 40)
+  //triangle roof
+  fill("#C9AA80")
+  triangle(-43.5, -49, -53, -40, -34, -40)
+  triangle(6.5, -49, -3, -40, 16, -40)
+  //battlements
+  fill("#D6B994")
+  rect(-37,-34, 5, 4)
+  rect(-28,-34, 8, 4)
+  rect(-17,-34, 8, 4)
+  rect(-5,-34, 5, 4)
+  fill("#C7A77E")
+  //door
+  noStroke();
+  arc(-17,-10,10,10,PI,0)
+  rect(-22,-10,10,10)
+  //windows
+  arc(-43.5,-25,5,5,PI,0)
+  rect(-46,-25,5,5)
+  
+  arc(7,-25,5,5,PI,0)
+  rect(4.5,-25,5,5)
+  //sandinfront
+  push();
+  stroke(0);
+  strokeWeight(5)
+  //point(-60,5)
+  //point(-30,-4)
+  //point(0,0)
+  //point(14,-4)
+  //point(14,5)
+  stroke('#DCCE8C')
+  fill("#DCCE8C")
+  strokeWeight(3)
+  beginShape();
+  curveVertex(14,5)
+  curveVertex(-60,5);
+  curveVertex(-30,-4);
+  curveVertex(0,0);
+  curveVertex(14,-4);
+  curveVertex(14,5);
+  curveVertex(-60,5);
+  
+  endShape();
+  pop();
+  pop();
+}
+function updatedCastle(x,y,s) {
+  push();
+  translate(x,y);
+  scale(s);
+  fill(255);
+  stroke(0);
+  strokeWeight(0.5)
+  //main
+  fill("#D6B994")
+  rect(-40,-30,40,30)
+  //towers
+  fill("#DCCE8C")
+  rect(-50,-30, 13, 30)
+  rect(-0,-40, 13, 40)
+  //battlements
+  fill("#D6B994")
+  rect(-37,-34, 5, 4)
+  rect(-28,-34, 8, 4)
+  rect(-17,-34, 8, 4)
+  rect(-5,-34, 5, 4)
+  fill("#C7A77E")
+  //door
+  noStroke();
+  arc(-17,-10,10,10,PI,0)
+  rect(-22,-10,10,10)
+  //windows
+  arc(-43.5,-25,5,5,PI,0)
+  rect(-46,-25,5,5)
+  
+  arc(7,-25,5,5,PI,0)
+  rect(4.5,-25,5,5)
+  //sandinfront
+  push();
+  stroke(0);
+  strokeWeight(5)
+  //point(-60,5)
+  //point(-30,-4)
+  //point(0,0)
+  //point(14,-4)
+  //point(14,5)
+  stroke('#DCCE8C')
+  fill("#DCCE8C")
+  strokeWeight(3)
+  beginShape();
+  curveVertex(14,5)
+  curveVertex(-60,5);
+  curveVertex(-30,-4);
+  curveVertex(0,0);
+  curveVertex(14,-4);
+  curveVertex(14,5);
+  curveVertex(-60,5);
+  endShape();
+  push();
+  noStroke();
+  fill("#DCCE8C")
+  ellipse(0,-30,40,30)
+  ellipse(-50,-30,20,20)
+  pop();
+  pop();
+  pop();
+}
 
 function lawnpath(x) {
   push();
@@ -291,12 +438,20 @@ function mouseClicked() {
     ) {
       clicked = !clicked;
     }
-    if (mouseX > 30 &&
-      mouseX < 90 &&
-      mouseY > 185 &&
-      mouseY < 215
-      ) {
-        clicked1 += 1;
-      }
+  if (mouseX > 30 &&
+    mouseX < 90 &&
+    mouseY > 185 &&
+    mouseY < 215
+    ) {
+      clicked1 += 1;
+    }
+  if (mouseX > 235 &&
+    mouseX < 275 &&
+    mouseY > 220 &&
+    mouseY < 235
+    ) {
+      clicked2 += 1;
+    }
 }
-//rect(30,185, 60, 30)
+//weiners rect(30,185, 60, 30)
+//sand rect(235,220,40,15)
