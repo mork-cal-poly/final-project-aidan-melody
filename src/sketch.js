@@ -160,8 +160,8 @@ function drawBackground () {
     endShape(CLOSE);
   
     //fridge
+    fill(255);
    rect(250,90,75,210);
-   fill (255);
 
    //bottom right angle
    line(325,300,400,400);
@@ -176,61 +176,104 @@ function drawBackground () {
    line(100,200,325,200);
 
    //left cabinet
+   fill (45,99,63,);
    rect(100,200,75,100);
-   // fill (45,99,63,);
-
+   
    //right cabinet
+   fill (45,99,63,);
    rect(175,200,75,100);
 
    //left drawer
+   fill (45,99,63);
    rect(100,200,75,25);
+    //left knob drawer
+    fill(230,193,60);
+    ellipse(135,215,18,7);
 
    //right drawer
+   fill (45,99,63);
    rect(175,200,75,25);
+    //right knob drawer
+    fill(230,193,60);
+    ellipse(210,215,18,7);
 
    //small left cabinet
+   fill (45,99,63);
    rect(110,235,55,55);
+      //left knob
+      fill(230,193,60);
+      ellipse(135,265,18,7);
 
    //small right cabinet
+   fill (45,99,63);
    rect(185,235,55,55);
+     //right knob
+     fill(230,193,60);
+     ellipse(210,265,18,7);
 
-   //bottom left surface line angle
-   line(45,330,100,200);
+   //bottom left counter
+   fill(240);
+   beginShape();
+   vertex(0,330);
+   vertex(45,330);
+   vertex(100,200);
+   vertex(100,170)
+   vertex(0,240);
+   endShape(CLOSE);
 
    //bottom left rect straight down
+   fill(45,99,63,);
    rect(0,330,45,70);
 
-   //bottom left angle counter
-   line(0,240,100,170);
+   //bottom angeled cabinet
+   fill (45,99,63);
+   beginShape();
+   vertex(45,330);
+   vertex(100,200)
+   vertex(100,300);
+   vertex(75,400);
+   vertex(45,400);
+   endShape(CLOSE);
 
-   //small line connecting left counter to cabinet
-   line(100,170,100,200);
 
    //rect on counter middle
+   fill(240);
    rect(100,110,150,60);
 
    //above sink rec
+   fill(240);
    rect(100,170,150,30);
 
    //sink
+   fill(255);
    ellipse(175,180,80,25);
 
    //sink faucet
    rect(170,142,6,25);
 
    //left sink knob
+   fill(230,193,60);
    ellipse(152,165,10,10);
 
    //right sink knob
+   fill(230,193,60);
    ellipse(195,165,10,10);
 
    //window
+   fill(188,246,250);
    beginShape();
-
    vertex(0,220);
    vertex(100,155);
    vertex(100,50);
    vertex(0,70);
+   endShape(CLOSE);
+
+  fill(146,209,81);
+   beginShape();
+   vertex(0,220);
+   vertex(100,155);
+   vertex(100,120);
+   vertex(0,170);
    endShape(CLOSE);
 
    //window panes
@@ -244,6 +287,7 @@ function drawBackground () {
    fill (216,255,251);
 
    //fridge weird angle
+   fill(255);
    beginShape();
    
    vertex(250,90);
@@ -255,8 +299,21 @@ function drawBackground () {
 
    //lamp hanging
    line(200,0,200,70);
+   fill(217,116,85);
    ellipse(200,80,20,20);
+   fill(217,88,35);
   triangle(200,80,240,100,160,100);
+
+  //left wall
+  fill(255,242,214);
+  beginShape();
+  vertex(310,90);
+  vertex(310,0);
+  vertex(400,0);
+  vertex(400,400);
+  vertex(325,300);
+  vertex(325,90);
+  endShape(CLOSE);
 
     
 
