@@ -1,4 +1,6 @@
 let timer = 0;
+let sx = 1;
+let clickedOnFridge = false;
 
 function setup() {
   // For ordering nodes in the DOM
@@ -9,8 +11,29 @@ function setup() {
 function draw() {
   background(220);
   drawBackground ();
-  noLoop();
- 
+  drawFridge();
+
+}
+
+function drawFridge() {
+  push();
+  fill(200);
+  stroke(130);
+  strokeWeight(2);
+  translate(325, 90);
+  scale(sx, 1);
+  rect(-75, 0, 75, 150);
+  rect(-75, 80, 75, 130);
+
+  //delete later 
+  ellipse(0, 0, 20);
+  pop();
+  if (clickedOnFridge) {
+    sx = sx-.01;
+    if (sx <= 0) {
+     sx = 0;
+    }
+  }
 }
 
 function drawBackground () {
@@ -173,8 +196,17 @@ function drawBackground () {
    //going up
    line(100,300,100,200);
 
+    //fridge weird angle
+    fill(255);
+    beginShape();
+    vertex(250,90);
+    vertex(240,110);
+    vertex(240,200);
+    vertex(250,200);
+    endShape(CLOSE);
+ 
    //straight thru fridge
-   line(100,200,325,200);
+   line(100,170,325,170);
 
    //left cabinet
    fill (45,99,63,);
@@ -330,7 +362,6 @@ function drawBackground () {
 
     
 
-    
 
 
  
@@ -338,4 +369,8 @@ function drawBackground () {
   
 
 
+}
+
+function mouseClicked() {
+  clickedOnFridge = true;
 }
