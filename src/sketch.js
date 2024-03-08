@@ -160,6 +160,7 @@ function drawBackground () {
     endShape(CLOSE);
   
     //fridge
+    strokeWeight(1);
     fill(255);
    rect(250,90,75,210);
 
@@ -177,6 +178,8 @@ function drawBackground () {
 
    //left cabinet
    fill (45,99,63,);
+   stroke(7,57,20);
+   strokeWeight(2);
    rect(100,200,75,100);
    
    //right cabinet
@@ -246,9 +249,12 @@ function drawBackground () {
 
    //sink
    fill(255);
+   strokeWeight(1);
+   stroke(235);
    ellipse(175,180,80,25);
 
    //sink faucet
+   stroke(0);
    rect(170,142,6,25);
 
    //left sink knob
@@ -261,7 +267,11 @@ function drawBackground () {
 
    //window
    fill(188,246,250);
+   stroke(255);
+   strokeWeight(2);
+
    beginShape();
+   stroke(255);
    vertex(0,220);
    vertex(100,155);
    vertex(100,50);
@@ -277,13 +287,16 @@ function drawBackground () {
    endShape(CLOSE);
 
    //window panes
+   stroke(255);
+   strokeWeight(2);
    line(50,60,50,188);
    line(0,155,100,110);
    fill (0,0,255);
 
    //above fridge line
+   stroke(0);
+   strokeWeight(1);
    line()
-
    fill (216,255,251);
 
    //fridge weird angle
