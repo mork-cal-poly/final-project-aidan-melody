@@ -9,6 +9,7 @@ function setup() {
 function draw() {
   background(220);
   drawBackground ();
+  noLoop();
  
 }
 
@@ -18,14 +19,17 @@ function drawBackground () {
   push();
 
     //top left tile 
+    fill(66,31,0);
     beginShape()
     vertex(100,300);
     vertex(170,300);
     vertex(200,320);
+  
     vertex(95,320);
     endShape(CLOSE);
 
     //first row mid left tile
+    fill(79,37,0);
     beginShape()
     vertex(170,300);
     vertex(230,300);
@@ -34,6 +38,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //second row left tile
+    fill(79,37,0);
     beginShape();
     vertex(95,320);
     vertex(90,340);
@@ -42,6 +47,7 @@ function drawBackground () {
     endShape();
 
     //second row left mid tile
+    fill(66,31,0); 
     beginShape();
     vertex(150,340);
     vertex(260,340);
@@ -58,6 +64,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //fourth row left tile
+    fill(79,37,0);
     beginShape();
     vertex(135,370);
     vertex(83,370);
@@ -74,6 +81,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //fourth row left mid tile
+    fill(66,31,0); 
     beginShape();
     vertex(134,370);
     vertex(220,370);
@@ -90,6 +98,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //second row right mid tile 
+    fill(79,37,0);
     beginShape();
     vertex(285,320);
     vertex(220,320);
@@ -98,6 +107,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //third row right mid tile
+    fill(66,31,0); 
     beginShape();
     vertex(220,340);
     vertex(300,340);
@@ -106,6 +116,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //fourth row right mid tile
+    fill(79,37,0);
     beginShape();
     vertex(321,370);
     vertex(220,370);
@@ -122,6 +133,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //second row right tile 
+    fill(66,31,0); 
     beginShape();
     vertex(340,320);
     vertex(285,320);
@@ -130,6 +142,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //third row right tile
+    fill(79,37,0);
     beginShape();
     vertex(300,340);
     vertex(355,340);
@@ -138,6 +151,7 @@ function drawBackground () {
     endShape(CLOSE);
 
     //fourth row right tile 
+    fill(66,31,0); 
     beginShape();
     vertex(377,370);
     vertex(321,370);
