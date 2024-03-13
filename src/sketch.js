@@ -1,6 +1,7 @@
 let timer = 0;
 let sx = 1;
-let clickedOnFridge = false;
+let clickedOnFridge = 0;
+let clickedOnLamp = 0;
 
 function setup() {
   // For ordering nodes in the DOM
@@ -12,7 +13,14 @@ function draw() {
   background(220);
   drawBackground ();
   drawFridge();
-
+  if (clickedOnLamp == 1 ) {
+     fill(230,219,55,100);
+     noStroke();
+     rect(175,100,50,30);
+  }
+  if (clickedOnFridge == 2) {
+      clickedOnFridge = 0;
+  }
 }
 
 function drawFridge() {
@@ -24,11 +32,8 @@ function drawFridge() {
   scale(sx, 1);
   rect(-75, 0, 75, 150);
   rect(-75, 80, 75, 130);
-
-  //delete later 
-  ellipse(0, 0, 20);
   pop();
-  if (clickedOnFridge) {
+  if (clickedOnFridge == 1 ) {
     sx = sx-.01;
     if (sx <= 0) {
      sx = 0;
@@ -360,17 +365,26 @@ function drawBackground () {
   vertex(325,90);
   endShape(CLOSE);
 
-    
-
-
-
- 
-   
   
+
+
 
 
 }
 
 function mouseClicked() {
-  clickedOnFridge = true;
+  if (mouseX > 150 &&
+      mouseX < 250 &&
+      mouseY < 100 &&
+      mouseY < 150
+      ) {
+  clickedOnLamp += 1;
+} 
+  if (mouseX > 250 &&
+      mouseX < 350 &&
+      mouseY < 150 &&
+      mouseY < 350
+  ) {clickedOnFridge += 1;
+
+  }
 }
