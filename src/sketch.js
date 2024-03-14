@@ -10,7 +10,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(255,242,214);
   drawBackground ();
   drawFridge();
   if (clickedOnLamp == 1 ) {
@@ -398,7 +398,7 @@ function drawBackground () {
    fill(217,88,35);
   triangle(200,80,240,100,160,100);
 
-  //left wall
+  //right wall
   fill(255,242,214);
   beginShape();
   vertex(310,90);
@@ -408,9 +408,6 @@ function drawBackground () {
   vertex(325,300);
   vertex(325,90);
   endShape(CLOSE);
-
-  
-
 
 
 
