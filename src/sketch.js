@@ -352,7 +352,7 @@ function drawBackground () {
    strokeWeight(2);
 
    beginShape();
-   stroke(255);
+   stroke(0);
    vertex(0,220);
    vertex(100,155);
    vertex(100,50);
@@ -368,7 +368,7 @@ function drawBackground () {
    endShape(CLOSE);
 
    //window panes
-   stroke(255);
+   stroke(0);
    strokeWeight(2);
    line(50,60,50,188);
    line(0,155,100,110);
