@@ -16,7 +16,7 @@ function draw() {
   if (clickedOnLamp == 1 ) {
      fill(230,219,55,100);
      noStroke();
-     rect(175,100,50,30);
+     rect(175,100,50,30);  //change lamp to origin
   }
   if (clickedOnFridge == 2) {
       clickedOnFridge = 0;
@@ -30,8 +30,10 @@ function drawFridge() {
   strokeWeight(2);
   translate(325, 90);
   scale(sx, 1);
-  rect(-75, 0, 75, 150);
-  rect(-75, 80, 75, 130);
+  //rect(-75, 0, 75, 150);
+  //rect(-75, 80, 75, 130);
+  
+
   pop();
   if (clickedOnFridge == 1 ) {
     sx = sx-.01;
@@ -190,7 +192,43 @@ function drawBackground () {
     //fridge
     strokeWeight(1);
     fill(255);
-   rect(250,90,75,210);
+     rect(250,90,75,210);
+   line(250, 135, 325, 135);
+
+   line(250, 195, 325, 195);
+   line(250, 220, 325, 220);
+   line(250, 245, 325, 245);
+   line(250, 270, 325, 270);
+
+   //apples
+   fill(255,0,0);
+   ellipse(280,260,15,15);
+   ellipse(310,260,15,15);
+   ellipse(300,260,15,15);
+   stroke(0,255,0);
+   line(280,247,280,253);
+   line(310,247,310,253);
+   line(300,247,300,253);
+
+   stroke(0); 
+   fill(252,95,35);
+   ellipse(260,210,15,15);
+   ellipse(270,210,15,15);
+   ellipse(290,210,15,15);
+   stroke(0,255,0);
+   line(260,205,260,200);
+   line(270,205,270,200);
+   line(290,205,290,200);
+
+   stroke(0);
+
+  //fridge sections
+   line(0, 40, -75, 40);
+   line(0, 20, -75, 20);
+   line(0, 100, -75, 100);
+   line(0, 130, -75, 130);
+   line(0, 160, -75, 160);
+   line(0, 190, -75, 190);
 
    //bottom right angle
    line(325,300,400,400);
@@ -380,8 +418,8 @@ function mouseClicked() {
       ) {
   clickedOnLamp += 1;
 } 
-  if (mouseX > 250 &&
-      mouseX < 350 &&
+  if (mouseX > 200 &&
+      mouseX < 400 &&
       mouseY < 150 &&
       mouseY < 350
   ) {clickedOnFridge += 1;
