@@ -30,8 +30,14 @@ function drawFridge() {
   strokeWeight(2);
   translate(325, 90);
   scale(sx, 1);
-  //rect(-75, 0, 75, 150);
-  //rect(-75, 80, 75, 130);
+  rect(-75, 0, 75, 150);
+  rect(-75, 80, 75, 130);
+
+  //fridge note
+  fill(255);
+  rect(-30, 40, 25, 30);
+  fill(255,0,0);
+  ellipse(-30,40,10,10);
   
 
   pop();
