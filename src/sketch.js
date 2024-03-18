@@ -920,3 +920,268 @@ function lawnpath(x) {
   rect(200, 140,x,10)
   pop();
 }
+
+//Solar System
+let sunRadius = 60;
+let planetOrbits = [50, 100, 150, 200, 300, 400, 500, 600]; // Distances of planets from the Sun
+let planetSpeeds = [0.03, 0.02, 0.015, 0.01, 0.005, 0.003, 0.002, 0.001]; // Orbital speeds of planets
+let clickedPlanet = null;
+let shootingStarX = 0;
+let shootingStarY = 0;
+let shootingStarSpeed = 5;
+let lastShootingStarTime = 0;
+const shootingStarInterval = 15000; // 15 seconds
+let planetMessages = {}; // Object to track planet click counts and messages
+let sunClickCount = 0; // Variable to track the number of times the sun is clicked
+let planetOrbiting = false; // Variable to track if the planets are currently orbiting the sun
+let orbitStartTime = 0; // Variable to track the start time of orbiting
+
+// Define a class for planets
+class Planet {
+  constructor(name, orbitRadius, orbitSpeed, planetColor, planetRadius) {
+    this.name = name;
+    this.orbitRadius = orbitRadius;
+    this.orbitSpeed = orbitSpeed;
+    this.planetColor = planetColor;
+    this.planetRadius = planetRadius;
+    this.angle = random(TWO_PI); // Randomize initial position
+    this.clickedCount = 0; // Track click count for each planet
+  }
+
+  // Draw the planet and its orbit path
+  draw() {
+    let x = width / 2 + this.orbitRadius * cos(this.angle);
+    let y = height / 2 + this.orbitRadius * sin(this.angle);
+    // Draw planet
+    fill(this.planetColor);
+    ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2); // Planet
+    // Draw planet details (e.g., texture, rings, moons)
+    // (Add your detailed drawing code here)
+    noFill();
+    stroke(255, 100);
+    ellipse(width / 2, height / 2, this.orbitRadius * 2, this.orbitRadius * 2); // Orbit path
+
+    // Customize appearance of each planet
+    if (this.name === "Mercury") {
+      fill(169, 169, 169); // Grayish
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+    } else if (this.name === "Venus") {
+      fill(255, 215, 0); // Yellowish
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+    } else if (this.name === "Earth") {
+      fill(30, 144, 255); // Blue-green
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+    } else if (this.name === "Mars") {
+      fill(255, 69, 0); // Reddish
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+    } else if (this.name === "Jupiter") {
+      fill(255, 140, 0); // Orange
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+    } else if (this.name === "Saturn") {
+      fill(255, 255, 0); // Yellow
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+      // Draw Saturn's rings
+      stroke(192, 192, 192); // Gray
+      strokeWeight(1);
+      for (let i = 0; i < 360; i += 5) {
+        let r = radians(i);
+        let ringRadius = this.planetRadius * 2.5;
+        line(x + ringRadius * cos(r), y + ringRadius * sin(r), x + ringRadius * 1.5 * cos(r), y + ringRadius * 1.5 * sin(r));
+      }
+    } else if (this.name === "Uranus") {
+      fill(173, 216, 230); // Light blue
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+    } else if (this.name === "Neptune") {
+      fill(0, 0, 139); // Dark blue
+      ellipse(x, y, this.planetRadius * 2, this.planetRadius * 2);
+    }
+  }
+
+  // Check if the planet is clicked
+  isClicked(x, y) {
+    let d = dist(x, y, width / 2, height / 2);
+    return d < this.orbitRadius;
+  }
+
+  // Set the planet as clicked and update the click count
+  setClicked() {
+    this.clickedCount++;
+    if (this.clickedCount >= 2) {
+      delete planetMessages[this.name];
+    }
+  }
+}
+
+// Define a class for the star in the top-left corner
+class TopLeftStar {
+  constructor(x, y, size) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+  }
+
+  // Draw the star
+  draw() {
+    fill(255);
+    noStroke();
+    beginShape();
+    for (let i = 0; i < TWO_PI; i += TWO_PI / 10) {
+      let angle1 = i;
+      let angle2 = i + PI / 5;
+      let x1 = this.x + cos(angle1) * this.size;
+      let y1 = this.y + sin(angle1) * this.size;
+      let x2 = this.x + cos(angle2) * this.size / 2;
+      let y2 = this.y + sin(angle2) * this.size / 2;
+      vertex(x1, y1);
+      vertex(x2, y2);
+    }
+    endShape(CLOSE);
+  }
+
+  // Check if the star is clicked
+  isClicked(x, y) {
+    let d = dist(x, y, this.x, this.y);
+    return d < this.size;
+  }
+}
+
+let planets = []; // Array to hold planet objects
+let topLeftStar; // Object for the star in the top-left corner
+
+function setup() {
+  createCanvas(1000, 1000);
+
+  // Create planet objects
+  for (let i = 0; i < planetOrbits.length; i++) {
+    planets.push(new Planet("Planet " + (i + 1), planetOrbits[i], planetSpeeds[i], color(random(100, 255), random(100, 255), random(100, 255)), 20));
+  }
+
+  // Create the star in the top-left corner
+  topLeftStar = new TopLeftStar(50, 50, 20);
+}
+
+// Draw function
+function draw() {
+  background(0);
+
+  // Draw Sun
+  drawSun();
+
+  // Draw planets
+  for (let planet of planets) {
+    planet.draw();
+    // Draw labels for planets
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(12);
+    text(planet.name, width / 2 + planet.orbitRadius * cos(planet.angle), height / 2 + planet.orbitRadius * sin(planet.angle) + 25);
+  }
+
+  // Draw the star in the top-left corner
+  topLeftStar.draw();
+
+  // Draw shooting star
+  drawShootingStar();
+}
+
+function drawSun() {
+  fill(255, 255, 0); // Yellow color for the Sun
+  ellipse(width / 2, height / 2, sunRadius * 2, sunRadius * 2); // The Sun
+  fill(0);
+  textSize(18);
+  textAlign(CENTER, CENTER);
+  text("Sun", width / 2, height / 2 + 70);
+}
+
+// Function to draw a shooting star
+function drawShootingStar() {
+  stroke(255); // White color for the shooting star
+  line(shootingStarX - 20, shootingStarY - 5, shootingStarX, shootingStarY);
+  line(shootingStarX - 20, shootingStarY + 5, shootingStarX, shootingStarY);
+  stroke(255, 255, 0);
+  line(shootingStarX - 20, shootingStarY, shootingStarX, shootingStarY);
+}
+
+function mouseClicked() {
+  // Check for click on the star in the top-left corner
+  if (topLeftStar.isClicked(mouseX, mouseY)) {
+    // Trigger shooting star animation
+    shootingStarX = -20; // Reset position of the shooting star
+    shootingStarY = random(height);
+    lastShootingStarTime = millis();
+  }
+
+  // Check for click on planets
+  for (let planet of planets) {
+    if (planet.isClicked(mouseX, mouseY)) {
+      clickedPlanet = planet.name;
+      planetMessages[planet.name] = true; // Set message status to true
+      planet.setClicked();
+    }
+  }
+
+  // Check for click on the Sun
+  if (dist(mouseX, mouseY, width / 2, height / 2) < sunRadius) {
+    sunClickCount++;
+    if (sunClickCount === 1) {
+      // Trigger message for Sun
+      planetMessages["Sun"] = true;
+    } else if (sunClickCount === 2) {
+      // Start orbiting
+      planetOrbiting = true;
+      orbitStartTime = millis();
+    } else if (sunClickCount === 3) {
+      // Reset click count and stop orbiting
+      sunClickCount = 0;
+      planetOrbiting = false;
+    }
+  }
+}
+
+function updateOrbits() {
+  if (millis() - orbitStartTime < 10000) {
+    // Orbiting for 10 seconds
+    let timeElapsed = millis() - orbitStartTime;
+    for (let i = 0; i < planets.length; i++) {
+      planets[i].angle += planetSpeeds[i] * (timeElapsed / 1000);
+    }
+  } else {
+    // Reset planet angles after 10 seconds
+    for (let i = 0; i < planets.length; i++) {
+      planets[i].angle = random(TWO_PI); // Randomize initial position
+    }
+    planetOrbiting = false;
+  }
+}
+
+function update() {
+  moveShootingStar();
+  if (planetOrbiting) {
+    updateOrbits();
+  }
+}
+
+// Function to move the shooting star
+function moveShootingStar() {
+  if (millis() - lastShootingStarTime >= shootingStarInterval) {
+    shootingStarX = -20; // Reset position of the shooting star
+    shootingStarY = random(height);
+    lastShootingStarTime = millis();
+  } else {
+    shootingStarX += shootingStarSpeed;
+  }
+}
+
+// New function to add distant stars to the night sky
+function drawDistantStars() {
+  // Draw distant stars
+  fill(255);
+  noStroke();
+  for (let i = 0; i < 200; i++) {
+    let x = random(width);
+    let y = random(height);
+    ellipse(x, y, 1, 1);
+  }
+}
+
+setInterval(update, 1000 / 60); // Update at 60 FPS
